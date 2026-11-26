@@ -1,0 +1,30 @@
+dependencies:
+  espressif/mqtt:
+    component_hash: fb18bc3b65aa8c94693a9811ffc322cca8a65d92d5ec84983d3e385080e3969c
+    dependencies:
+    - name: idf
+      require: private
+      version: '>=5.3'
+    source:
+      registry_url: https://components.espressif.com/
+      type: service
+    version: 1.1.0
+  idf:
+    source:
+      type: idf
+    version: 6.2.0
+  lovyangfx:
+    component_hash: 95c90b8ac78daf03794100fe80170c4a78d0721bf5fac1866ed4f067218c1b2e
+    dependencies: []
+    source:
+      git: https://github.com/lovyan03/LovyanGFX.git
+      path: .
+      type: git
+    version: dd228d15a03900ce658fd62e120dc7cc489915dd
+direct_dependencies:
+- espressif/mqtt
+- idf
+- lovyangfx
+manifest_hash: 310646872f92aea2d12d680d7d58618ed836b5c80d34342d3ec8c050329a0534
+target: esp32
+version: 3.0.0

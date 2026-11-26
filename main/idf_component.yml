@@ -1,0 +1,6 @@
+dependencies:
+  idf: ">=6.2,<6.3"
+  espressif/mqtt: "^1.1.0"
+  lovyangfx:
+    git: https://github.com/lovyan03/LovyanGFX.git
+    version: dd228d15a03900ce658fd62e120dc7cc489915dd

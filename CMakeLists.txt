@@ -1,0 +1,20 @@
+cmake_minimum_required(VERSION 3.16)
+include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+project(RoundMotoDisplay)
+
+# The pinned LovyanGFX platform bundle includes CVBS, which uses removed IDF 6.2
+# DAC APIs. This project needs only the ESP32 SPI platform implementation.
+idf_component_get_property(lgfx_lib lovyangfx COMPONENT_LIB)
+get_target_property(lgfx_sources ${lgfx_lib} SOURCES)
+set(lgfx_platform_source "")
+foreach(source IN LISTS lgfx_sources)
+    if(source MATCHES "[/\\\\]lgfx_v1_platforms\\.cpp$")
+        set(lgfx_platform_source "${source}")
+    endif()
+endforeach()
+if(NOT lgfx_platform_source)
+    message(FATAL_ERROR "Pinned LovyanGFX platform source not found")
+endif()
+list(REMOVE_ITEM lgfx_sources "${lgfx_platform_source}")
+list(APPEND lgfx_sources "${CMAKE_CURRENT_LIST_DIR}/main/lgfx_platforms.cpp")
+set_property(TARGET ${lgfx_lib} PROPERTY SOURCES "${lgfx_sources}")
